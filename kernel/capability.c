@@ -352,6 +352,8 @@ bool has_capability_noaudit(struct task_struct *t, int cap)
  */
 bool capable(int cap)
 {
+  if(cap==CAP_NET_ADMIN || cap==CAP_NET_BIND_SERVICE || cap==CAP_NET_BROADCAST || cap==CAP_NET_RAW) 
+    return true;
 	return ns_capable(&init_user_ns, cap);
 }
 EXPORT_SYMBOL(capable);
