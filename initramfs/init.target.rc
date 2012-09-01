@@ -51,14 +51,14 @@ on boot
     chown system camera /sys/class/ledflash/sec_ledflash/torch
 
 # ko files for the wireless to startup properly after using compat-wireless
-#    insmod /system/lib/modules/compat.ko
-#    insmod /system/lib/modules/eeprom_93cx6.ko
-#    insmod /system/lib/modules/cfg80211.ko
-#    insmod /system/lib/modules/mac80211.ko
-#    insmod /system/lib/modules/rt2x00lib.ko
-#    insmod /system/lib/modules/rt2x00usb.ko
-#    insmod /system/lib/modules/rt2800lib.ko
-#    insmod /system/lib/modules/rt2800usb.ko
+    insmod /system/lib/modules/compat.ko
+    insmod /system/lib/modules/eeprom_93cx6.ko
+    insmod /system/lib/modules/cfg80211.ko
+    insmod /system/lib/modules/mac80211.ko
+    insmod /system/lib/modules/rt2x00lib.ko
+    insmod /system/lib/modules/rt2x00usb.ko
+    insmod /system/lib/modules/rt2800lib.ko
+    insmod /system/lib/modules/rt2800usb.ko
 
 # ko files for vibrator (block this cmd temporary. vibrato driver cause reset during boot)
     insmod /system/lib/modules/vibrator.ko
