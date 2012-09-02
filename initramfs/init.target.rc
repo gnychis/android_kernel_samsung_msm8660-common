@@ -59,6 +59,10 @@ on boot
     insmod /system/lib/modules/rt2x00usb.ko
     insmod /system/lib/modules/rt2800lib.ko
     insmod /system/lib/modules/rt2800usb.ko
+    insmod /system/lib/modules/sch_fq_codel.ko
+    insmod /system/lib/modules/sch_codel.ko
+    insmod /system/lib/modules/brcmutil.ko
+    insmod /system/lib/modules/brcmfmac.ko
 
 # ko files for vibrator (block this cmd temporary. vibrato driver cause reset during boot)
     insmod /system/lib/modules/vibrator.ko
