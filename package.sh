@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -f sgs2_cm9_awmon.zip
 rm -f initramfs/lib/modules/*
 rm -f package_tree/system/lib/modules/*
 rm -f package_tree/boot.img
