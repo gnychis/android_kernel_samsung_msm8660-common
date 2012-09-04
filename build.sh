@@ -1,6 +1,6 @@
 #!/bin/bash
 make ARCH=arm clean
-make ARCH=arm cyanogenmod_awmon_defconfig
+make ARCH=arm cyanogenmod_test_defconfig
 make -j2 ARCH=arm CROSS_COMPILE=arm-eabi-
 cd ../compat-wireless-3.0.9-1/
 make clean
