@@ -3271,7 +3271,6 @@ static int __init
 dhd_module_init(void)
 {
 	int error;
-	dhd_msg_level |= DHD_TRACE_VAL;
   printk("gnychis: in the init\n");
 
 	DHD_TRACE(("%s: Enter\n", __FUNCTION__));

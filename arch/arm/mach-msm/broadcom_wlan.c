@@ -247,7 +247,7 @@ static void *brcm_wlan_get_country_code(char *ccode)
 
 static struct resource brcm_wlan_resources[] = {
 	[0] = {
-		.name	= "bcmdhd_wlan_irq",
+		.name	= "bcm4330_wlan_irq",
 		.start	=  MSM_GPIO_TO_INT(GPIO_WLAN_HOST_WAKE),
 		.end		=  MSM_GPIO_TO_INT(GPIO_WLAN_HOST_WAKE),
 #if defined(CONFIG_TARGET_SERIES_Q1) && defined(CONFIG_TARGET_LOCALE_USA)
@@ -270,7 +270,7 @@ static struct wifi_platform_data brcm_wlan_control = {
 };
 
 static struct platform_device brcm_device_wlan = {
-	.name		= "bcmdhd_wlan",
+	.name		= "bcm4330_wlan",
 	.id		= 1,
 	.num_resources	= ARRAY_SIZE(brcm_wlan_resources),
 	.resource	= brcm_wlan_resources,

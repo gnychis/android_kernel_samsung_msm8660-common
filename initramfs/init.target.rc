@@ -51,6 +51,7 @@ on boot
     chown system camera /sys/class/ledflash/sec_ledflash/torch
 
 # ko files for the wireless to startup properly after using compat-wireless
+    insmod /system/lib/modules/librasdioif.ko
     insmod /system/lib/modules/compat.ko
     insmod /system/lib/modules/eeprom_93cx6.ko
     insmod /system/lib/modules/cfg80211.ko

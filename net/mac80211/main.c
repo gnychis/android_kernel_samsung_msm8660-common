@@ -700,6 +700,8 @@ int ieee80211_register_hw(struct ieee80211_hw *hw)
 		WLAN_CIPHER_SUITE_AES_CMAC
 	};
 
+  printk("gnychis: in ieee80211_register_hw\n");
+
 	if ((hw->wiphy->wowlan.flags || hw->wiphy->wowlan.n_patterns)
 #ifdef CONFIG_PM
 	    && (!local->ops->suspend || !local->ops->resume)

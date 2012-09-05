@@ -174,7 +174,6 @@ dhd_common_init(osl_t *osh)
 	 */
   printk("gnychis: setting msg level\n");
 	dhd_msg_level |= DHD_ERROR_VAL;
-	dhd_msg_level |= DHD_TRACE_VAL;
 	/* Allocate private bus interface state */
 	if (!(cmn = MALLOC(osh, sizeof(dhd_cmn_t)))) {
 		DHD_ERROR(("%s: MALLOC failed\n", __FUNCTION__));
