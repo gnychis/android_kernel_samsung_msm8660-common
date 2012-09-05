@@ -1706,6 +1706,7 @@ netdev_tx_t ieee80211_subif_start_xmit(struct sk_buff *skb,
 	struct sta_info *sta = NULL;
 	u32 sta_flags = 0;
 	struct sk_buff *tmp_skb;
+  u16 info_id = 0;
 
 	if (unlikely(skb->len < ETH_HLEN)) {
 		ret = NETDEV_TX_OK;
