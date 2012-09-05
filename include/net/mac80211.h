@@ -530,7 +530,8 @@ struct ieee80211_tx_info {
 			u8 ampdu_ack_len;
 			int ack_signal;
 			u8 ampdu_len;
-			/* 15 bytes free */
+      u8 antenna;
+			/* 14 bytes free */
 		} status;
 		struct {
 			struct ieee80211_tx_rate driver_rates[
