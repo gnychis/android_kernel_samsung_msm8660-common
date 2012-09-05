@@ -454,3 +454,29 @@ void ieee80211_report_low_ack(struct ieee80211_sta *pubsta, u32 num_packets)
 				    num_packets, GFP_ATOMIC);
 }
 EXPORT_SYMBOL(ieee80211_report_low_ack);
+
+void ieee80211_free_txskb(struct ieee80211_hw *hw, struct sk_buff *skb)
+{
+  struct ieee80211_local *local = hw_to_local(hw);
+  struct ieee80211_tx_info *info = IEEE80211_SKB_CB(skb);
+
+  if (unlikely(info->ack_frame_id)) {
+    struct sk_buff *ack_skb;
+    unsigned long flags;
+
+    spin_lock_irqsave(&local->ack_status_lock, flags);
+    ack_skb = idr_find(&local->ack_status_frames,
+           info->ack_frame_id);
+    if (ack_skb)
+      idr_remove(&local->ack_status_frames,
+           info->ack_frame_id);
+    spin_unlock_irqrestore(&local->ack_status_lock, flags);
+
+    /* consumes ack_skb */
+    if (ack_skb)
+      dev_kfree_skb_any(ack_skb);
+  }
+
+  dev_kfree_skb_any(skb);
+}
+EXPORT_SYMBOL(ieee80211_free_txskb);

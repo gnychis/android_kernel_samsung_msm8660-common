@@ -1993,6 +1993,7 @@ netdev_tx_t ieee80211_subif_start_xmit(struct sk_buff *skb,
 	memset(info, 0, sizeof(*info));
 
 	dev->trans_start = jiffies;
+  info->ack_frame_id = info_id;
 	ieee80211_xmit(sdata, skb);
 
 	return NETDEV_TX_OK;

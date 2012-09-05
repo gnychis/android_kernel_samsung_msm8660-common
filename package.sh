@@ -3,6 +3,7 @@ rm -f sgs2_cm9_awmon.zip
 rm -f initramfs/lib/modules/*
 rm -f package_tree/system/lib/modules/*
 rm -f package_tree/boot.img
+mkdir -p package_tree/system/lib/modules
 find . -name "*.ko" -exec cp {} package_tree/system/lib/modules \;
 ./mkbootfs initramfs | gzip > ramdisk.gz
 cp arch/arm/boot/zImage .

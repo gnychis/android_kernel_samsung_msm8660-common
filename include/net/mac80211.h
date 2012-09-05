@@ -245,30 +245,33 @@ enum ieee80211_bss_change {
  *	your driver/device needs to do.
  */
 struct ieee80211_bss_conf {
-	const u8 *bssid;
-	/* association related data */
-	bool assoc, ibss_joined;
-	u16 aid;
-	/* erp related data */
-	bool use_cts_prot;
-	bool use_short_preamble;
-	bool use_short_slot;
-	bool enable_beacon;
-	u8 dtim_period;
-	u16 beacon_int;
-	u16 assoc_capability;
-	u64 timestamp;
-	u32 basic_rates;
-	int mcast_rate[IEEE80211_NUM_BANDS];
-	u16 ht_operation_mode;
-	s32 cqm_rssi_thold;
-	u32 cqm_rssi_hyst;
-	enum nl80211_channel_type channel_type;
-	__be32 arp_addr_list[IEEE80211_BSS_ARP_ADDR_LIST_LEN];
-	u8 arp_addr_cnt;
-	bool arp_filter_enabled;
-	bool qos;
-	bool idle;
+  const u8 *bssid;
+  /* association related data */
+  bool assoc, ibss_joined;
+  u16 aid;
+  /* erp related data */
+  bool use_cts_prot;
+  bool use_short_preamble;
+  bool use_short_slot;
+  bool enable_beacon;
+  u8 dtim_period;
+  u16 beacon_int;
+  u16 assoc_capability;
+  u64 last_tsf;
+  u32 basic_rates;
+  int mcast_rate[IEEE80211_NUM_BANDS];
+  u16 ht_operation_mode;
+  s32 cqm_rssi_thold;
+  u32 cqm_rssi_hyst;
+  enum nl80211_channel_type channel_type;
+  __be32 arp_addr_list[IEEE80211_BSS_ARP_ADDR_LIST_LEN];
+  u8 arp_addr_cnt;
+  bool arp_filter_enabled;
+  bool qos;
+  bool idle;
+  u8 ssid[IEEE80211_MAX_SSID_LEN];
+  size_t ssid_len;
+  bool hidden_ssid;
 };
 
 /**
@@ -498,6 +501,9 @@ struct ieee80211_tx_info {
 	u8 band;
 
 	u8 antenna_sel_tx;
+
+  u8 hw_queue;
+  u16 ack_frame_id;
 
 	/* 2 byte hole */
 	u8 pad[2];
@@ -1269,6 +1275,16 @@ ieee80211_get_alt_retry_rate(const struct ieee80211_hw *hw,
 		return NULL;
 	return &hw->wiphy->bands[c->band]->bitrates[c->control.rates[idx + 1].idx];
 }
+
+/**
+ * ieee80211_free_txskb - free TX skb
+ * @hw: the hardware
+ * @skb: the skb
+ *
+ * Free a transmit skb. Use this funtion when some failure
+ * to transmit happened and thus status cannot be reported.
+ */
+void ieee80211_free_txskb(struct ieee80211_hw *hw, struct sk_buff *skb);
 
 /**
  * DOC: Hardware crypto acceleration
