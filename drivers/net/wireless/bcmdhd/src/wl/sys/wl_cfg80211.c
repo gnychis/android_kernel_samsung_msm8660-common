@@ -4712,6 +4712,7 @@ wl_cfg80211_set_channel(struct wiphy *wiphy, struct net_device *dev,
 		dev = wl_to_prmry_ndev(wl);
 	}
 	_chan = ieee80211_frequency_to_channel(chan->center_freq);
+  printk("gnychis_orig: Requested channel is: %d\n", _chan);
 	WL_ERR(("netdev_ifidx(%d), chan_type(%d) target channel(%d) \n",
 		dev->ifindex, channel_type, _chan));
 
@@ -4760,6 +4761,7 @@ wl_cfg80211_set_channel(struct wiphy *wiphy, struct net_device *dev,
 		if (err < 0) {
 			WL_ERR(("WLC_SET_CHANNEL error %d"
 				"chip may not be supporting this channel\n", err));
+    printk("gnychis_orig: do not support this channel1: %d\n", _chan);
 		}
 	}
 #else
@@ -4767,6 +4769,7 @@ wl_cfg80211_set_channel(struct wiphy *wiphy, struct net_device *dev,
 	if (err < 0) {
 		WL_ERR(("WLC_SET_CHANNEL error %d"
 			"chip may not be supporting this channel\n", err));
+    printk("gnychis_orig: do not support this channel2: %d\n", _chan);
 	}
 #endif
 	return err;

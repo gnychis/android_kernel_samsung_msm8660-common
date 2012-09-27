@@ -306,6 +306,12 @@ dhd_prot_ioctl(void *dhd_copy, int ifidx, wl_ioctl_t * ioc, void * buf, int len)
 	bool acquired = FALSE;
 #endif
 
+  if(dhd->busstate == DHD_BUS_DOWN)
+    printk("gnychis: dhd_prot_ioctl says that the bus is down\n");
+  if(dhd->hang_was_sent)
+    printk("gnychis: dhd_prot_ioctl says that hang was sent\n");
+
+
 	if ((dhd->busstate == DHD_BUS_DOWN) || dhd->hang_was_sent) {
 		DHD_ERROR(("%s : bus is down. we have nothing to do\n", __FUNCTION__));
 		goto done;
